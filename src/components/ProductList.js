@@ -1,5 +1,5 @@
 // src/components/ProductList.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/ProductList.css';
 import ProductItem from './ProductItem';
 import ProductFilter from './ProductFilter';
@@ -42,8 +42,8 @@ const ProductList = () => {
   });
 
   return (
-    <div className="product-list">
-      <div className="filter-sort-bar">
+    <div className="container product-list">
+      <div className="filter-sort-bar mb-3">
         <ProductFilter 
           categories={['Electronics', 'Clothing', 'Home Appliances', 'Books']} 
           selectedCategory={selectedCategory} 
@@ -54,14 +54,15 @@ const ProductList = () => {
           onSortChange={handleSortChange} 
         />
       </div>
-      <div className="product-grid">
+      <div className="row">
         {sortedProducts.map(product => (
-          <ProductItem
-            key={product.id}
-            name={product.name}
-            price={product.price}
-            description={product.description}
-          />
+          <div className="col-12 col-sm-6 col-md-4 mb-4" key={product.id}>
+            <ProductItem
+              name={product.name}
+              price={product.price}
+              description={product.description}
+            />
+          </div>
         ))}
       </div>
     </div>
